@@ -58,3 +58,56 @@ if(pToggle) {
     });
   });
 }
+
+// Smooth scroll for all anchors
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      const navHeight = document.getElementById('nav').offsetHeight;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Sign In feedback
+const signInBtn = document.querySelector('.btn-gl');
+if(signInBtn) {
+  signInBtn.addEventListener('click', () => {
+    alert("Sign in is currently restricted to authorized administrators of our Founding Schools cohort. If you're a founding partner, please use your provided credentials.");
+  });
+}
+
+// Waitlist handling
+const waitlistBtn = document.getElementById('waitlistBtn');
+const waitlistEmail = document.getElementById('waitlistEmail');
+
+if(waitlistBtn && waitlistEmail) {
+  waitlistBtn.addEventListener('click', () => {
+    const email = waitlistEmail.value.trim();
+    if(!email || !email.includes('@')) {
+      alert("Please enter a valid school email address.");
+      return;
+    }
+    
+    const originalText = waitlistBtn.textContent;
+    waitlistBtn.disabled = true;
+    waitlistBtn.textContent = "Adding you...";
+    
+    setTimeout(() => {
+      alert(`Thank you! We've added ${email} to our founding schools waitlist. Our team will reach out within 48 hours.`);
+      waitlistEmail.value = "";
+      waitlistBtn.textContent = originalText;
+      waitlistBtn.disabled = false;
+    }, 1200);
+  });
+}
