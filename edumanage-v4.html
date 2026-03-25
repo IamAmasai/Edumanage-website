@@ -216,11 +216,19 @@
     <div class="rv"><div class="ey">Pricing</div></div>
     <div class="rv"><h2 class="sh">Transparent pricing,<br><strong>no surprises</strong></h2></div>
     <div class="rv"><p class="sd">Priced per school, not per user. Every plan includes your Shamba Engineer, onboarding, training, and support.</p></div>
+
+    <div class="p-toggle-wrap rv">
+      <span class="p-toggle-lbl active" id="lbl-monthly">Monthly</span>
+      <div class="p-toggle" id="priceToggle" role="switch" aria-checked="false" aria-label="Toggle between monthly and annual pricing"></div>
+      <span class="p-toggle-lbl" id="lbl-yearly">Yearly</span>
+      <span class="p-save">Save 15%</span>
+    </div>
+
     <div class="pgrid">
       <div class="pcard rv d1">
         <div class="p-name">Starter</div>
-        <div class="p-price">KES 8,500<sub>/mo</sub></div>
-        <div class="p-period">Up to 500 students · billed annually</div>
+        <div class="p-price" data-m="8,500" data-y="7,225">KES 8,500<sub>/mo</sub></div>
+        <div class="p-period">Up to 500 students · <span class="p-cycle">billed monthly</span></div>
         <ul class="p-feats">
           <li>Student records &amp; profiles</li>
           <li>Attendance (offline-first)</li>
@@ -233,8 +241,8 @@
       </div>
       <div class="pcard feat rv d2">
         <div class="p-name">School</div>
-        <div class="p-price">KES 18,500<sub>/mo</sub></div>
-        <div class="p-period">Up to 1,500 students · billed annually</div>
+        <div class="p-price" data-m="18,500" data-y="15,725">KES 18,500<sub>/mo</sub></div>
+        <div class="p-period">Up to 1,500 students · <span class="p-cycle">billed monthly</span></div>
         <ul class="p-feats">
           <li>Everything in Starter</li>
           <li>Timetable builder</li>
@@ -248,7 +256,7 @@
       </div>
       <div class="pcard rv d3">
         <div class="p-name">Group</div>
-        <div class="p-price">Custom</div>
+        <div class="p-price" data-m="Custom" data-y="Custom">Custom</div>
         <div class="p-period">Multi-campus · unlimited students</div>
         <ul class="p-feats">
           <li>Everything in School</li>

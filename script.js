@@ -31,3 +31,30 @@ document.querySelectorAll('.ctr').forEach(el=>cio.observe(el));
 window.addEventListener('scroll',()=>{
   document.getElementById('nav').style.borderBottomColor=window.scrollY>8?'var(--bdr2)':'var(--bdr)';
 },{passive:true});
+
+// Pricing toggle
+const pToggle = document.getElementById('priceToggle');
+const lblM = document.getElementById('lbl-monthly');
+const lblY = document.getElementById('lbl-yearly');
+const prices = document.querySelectorAll('.p-price');
+const cycles = document.querySelectorAll('.p-cycle');
+
+if(pToggle) {
+  pToggle.addEventListener('click', () => {
+    const isYearly = pToggle.classList.toggle('yearly');
+    pToggle.setAttribute('aria-checked', isYearly);
+    lblM.classList.toggle('active', !isYearly);
+    lblY.classList.toggle('active', isYearly);
+    
+    prices.forEach(p => {
+      const val = isYearly ? p.dataset.y : p.dataset.m;
+      if(val !== 'Custom') {
+        p.innerHTML = `KES ${val}<sub>/mo</sub>`;
+      }
+    });
+    
+    cycles.forEach(c => {
+      c.textContent = isYearly ? 'billed annually' : 'billed monthly';
+    });
+  });
+}
