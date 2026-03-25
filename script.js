@@ -89,25 +89,32 @@ if(signInBtn) {
 
 // Waitlist handling
 const waitlistBtn = document.getElementById('waitlistBtn');
-const waitlistEmail = document.getElementById('waitlistEmail');
+const wSchool = document.getElementById('w-school');
+const wName = document.getElementById('w-name');
+const wPhone = document.getElementById('w-phone');
+const wEmail = document.getElementById('w-email');
 
-if(waitlistBtn && waitlistEmail) {
+if(waitlistBtn) {
   waitlistBtn.addEventListener('click', () => {
-    const email = waitlistEmail.value.trim();
-    if(!email || !email.includes('@')) {
-      alert("Please enter a valid school email address.");
+    const school = wSchool.value.trim();
+    const name = wName.value.trim();
+    const phone = wPhone.value.trim();
+    const email = wEmail.value.trim();
+
+    if(!school || !name || !phone || !email || !email.includes('@')) {
+      alert("Please fill in all fields with valid information so we can reach you correctly.");
       return;
     }
     
     const originalText = waitlistBtn.textContent;
     waitlistBtn.disabled = true;
-    waitlistBtn.textContent = "Adding you...";
+    waitlistBtn.textContent = "Adding your school...";
     
     setTimeout(() => {
-      alert(`Thank you! We've added ${email} to our founding schools waitlist. Our team will reach out within 48 hours.`);
-      waitlistEmail.value = "";
+      alert(`Thank you, ${name}! We've added ${school} to our founding schools waitlist. We'll reach out to you at ${phone} or ${email} within 48 hours.`);
+      [wSchool, wName, wPhone, wEmail].forEach(i => i.value = "");
       waitlistBtn.textContent = originalText;
       waitlistBtn.disabled = false;
-    }, 1200);
+    }, 1500);
   });
 }
