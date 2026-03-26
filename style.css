@@ -385,7 +385,15 @@ footer{border-top:1px solid var(--bdr);padding:64px 56px 44px;}
 .rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
 .rv.d4{transition-delay:.32s}.rv.d5{transition-delay:.40s}.rv.d6{transition-delay:.48s}
 
-/* ── RESPONSIVE ── */
+/* ── TRUST MODAL ── */
+.modal-ov{position:fixed;inset:0;background:rgba(11,22,40,.8);backdrop-filter:blur(8px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:all .3s;}
+.modal-ov.active{opacity:1;pointer-events:all;}
+.modal-c{background:var(--bg-c);width:90%;max-width:700px;max-height:80vh;border-radius:24px;border:1px solid var(--bdr2);padding:48px;position:relative;overflow-y:auto;transform:scale(.95);transition:all .3s cubic-bezier(.34,1.56,.64,1);}
+.modal-ov.active .modal-c{transform:scale(1);}
+.modal-x{position:absolute;top:24px;right:24px;font-size:32px;background:none;border:none;color:var(--t4);cursor:pointer;line-height:1;}
+.modal-h{font-family:var(--font-d);font-size:24px;font-weight:700;margin-bottom:24px;color:var(--text);}
+.modal-p{font-size:15px;color:var(--t2);line-height:1.7;margin-bottom:16px;}
+.modal-li{margin-bottom:12px;padding-left:12px;border-left:2px solid var(--blue);}
 @media(max-width:1000px){
   nav{padding:0 24px;}
   nav .nav-links{display:none;}

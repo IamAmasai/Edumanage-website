@@ -87,34 +87,43 @@ if(signInBtn) {
   });
 }
 
-// Waitlist handling
-const waitlistBtn = document.getElementById('waitlistBtn');
-const wSchool = document.getElementById('w-school');
-const wName = document.getElementById('w-name');
-const wPhone = document.getElementById('w-phone');
-const wEmail = document.getElementById('w-email');
+// Modal logic
+const modal = document.getElementById('legalModal');
+const modalContent = document.getElementById('modalContent');
+const closeModal = document.getElementById('closeModal');
 
-if(waitlistBtn) {
-  waitlistBtn.addEventListener('click', () => {
-    const school = wSchool.value.trim();
-    const name = wName.value.trim();
-    const phone = wPhone.value.trim();
-    const email = wEmail.value.trim();
+const legalDocs = {
+  privacy: `
+    <h2 class="modal-h">Privacy Policy</h2>
+    <p class="modal-p">At EduManage, student and school data privacy is our absolute priority. We are committed to the Kenya Data Protection Act (2019).</p>
+    <div class="modal-li"><p class="modal-p"><strong>Data Ownership:</strong> Your school owns all its data. We never sell or share it with third parties.</p></div>
+    <div class="modal-li"><p class="modal-p"><strong>Security:</strong> All records are encrypted with AES-256 and backed up daily across secure geographical locations.</p></div>
+    <div class="modal-li"><p class="modal-p"><strong>Purpose:</strong> We only process data to provide the management features you see on the platform.</p></div>
+  `,
+  terms: `
+    <h2 class="modal-h">Terms of Service</h2>
+    <p class="modal-p">By joining our founding cohort, you agree to build alongside us.</p>
+    <div class="modal-li"><p class="modal-p"><strong>Founding Price:</strong> Your monthly rate is locked for life as long as you remain an active school.</p></div>
+    <div class="modal-li"><p class="modal-p"><strong>Service Level:</strong> We commit to a 99.9% uptime and direct engineering support.</p></div>
+    <div class="modal-li"><p class="modal-p"><strong>Fair Use:</strong> The system is designed for legitimate educational administration only.</p></div>
+  `
+};
 
-    if(!school || !name || !phone || !email || !email.includes('@')) {
-      alert("Please fill in all fields with valid information so we can reach you correctly.");
-      return;
-    }
-    
-    const originalText = waitlistBtn.textContent;
-    waitlistBtn.disabled = true;
-    waitlistBtn.textContent = "Adding your school...";
-    
-    setTimeout(() => {
-      alert(`Thank you, ${name}! We've added ${school} to our founding schools waitlist. We'll reach out to you at ${phone} or ${email} within 48 hours.`);
-      [wSchool, wName, wPhone, wEmail].forEach(i => i.value = "");
-      waitlistBtn.textContent = originalText;
-      waitlistBtn.disabled = false;
-    }, 1500);
-  });
+function openLegal(type) {
+  modalContent.innerHTML = legalDocs[type];
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
+
+closeModal.onclick = () => {
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+};
+
+window.onclick = (e) => { if(e.target == modal) closeModal.onclick(); };
+
+// Update footer links to trigger modals
+document.querySelectorAll('.f-legal a, .fc-links a').forEach(a => {
+  if(a.textContent === 'Privacy') a.onclick = (e) => { e.preventDefault(); openLegal('privacy'); };
+  if(a.textContent === 'Terms') a.onclick = (e) => { e.preventDefault(); openLegal('terms'); };
+});

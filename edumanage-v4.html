@@ -346,27 +346,36 @@
       <h2 class="sh">Be a <strong>founding school.</strong></h2>
       <p class="sd" style="margin-left:auto;margin-right:auto;">We're onboarding a small cohort of founding schools in Nairobi and beyond. You get the product early, you shape where it goes, and your pricing is locked in for life.</p>
       
-      <div class="w-form-grid">
+      <form class="w-form-grid" name="waitlist" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="waitlist">
         <div class="w-field">
           <label class="w-label">School Name</label>
-          <input type="text" class="w-input" id="w-school" placeholder="e.g. Sunshine Academy" aria-label="School Name">
+          <input type="text" name="school" class="w-input" id="w-school" placeholder="e.g. Sunshine Academy" required>
         </div>
         <div class="w-field">
           <label class="w-label">Your Name</label>
-          <input type="text" class="w-input" id="w-name" placeholder="e.g. Jane Doe" aria-label="Contact Name">
+          <input type="text" name="name" class="w-input" id="w-name" placeholder="e.g. Jane Doe" required>
         </div>
         <div class="w-field">
           <label class="w-label">Phone Number</label>
-          <input type="tel" class="w-input" id="w-phone" placeholder="e.g. 0712 345 678" aria-label="Phone Number">
+          <input type="tel" name="phone" class="w-input" id="w-phone" placeholder="e.g. 0712 345 678" required>
         </div>
         <div class="w-field">
           <label class="w-label">School Email</label>
-          <input type="email" class="w-input" id="w-email" placeholder="your@school.ac.ke" aria-label="Email address">
+          <input type="email" name="email" class="w-input" id="w-email" placeholder="your@school.ac.ke" required>
         </div>
         <div class="w-field" style="grid-column: 1 / -1;">
-          <button class="w-btn" id="waitlistBtn" style="width: 100%;">Join the founding cohort →</button>
+          <button type="submit" class="w-btn" id="waitlistBtn" style="width: 100%;">Join the founding cohort →</button>
         </div>
-      </div>
+      </form>
+
+<!-- TRUST MODAL -->
+<div class="modal-ov" id="legalModal">
+  <div class="modal-c">
+    <button class="modal-x" id="closeModal">×</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
       
       <p class="w-note">No commitment required · We'll reach out within 48 hours to schedule a 15-min call</p>
     </div>
